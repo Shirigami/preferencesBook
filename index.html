@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Ejemplo</title>
+	<title>Registro de cliente</title>
 
 <!-- Latest compiled and minified CSS -->
 
@@ -22,30 +22,85 @@
 		<div class="container">
 			<h1>Preferences Book</h1>
 		</div>
+
 	</header>
   <div id="wrapper">
       <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-              Menú de opciones
-            </li>
-              <li>
-                  <a href="#">Consult2</a>
-              </li>
-              <li>
-                  <a href="#">Consult3</a>
-              </li>
-              <li>
-                  <a href="#">Consult4</a>
-              </li>
-              <li>
-                  <a href="#">Consult5</a>
-              </li>
-              <li>
-                  <a href="#">Consult6</a>
-              </li>
-          </ul>
-      </div>
+			<div id="sidebar-wrapper">
+					<ul class="sidebar-nav">
+						<li class="sidebar-brand">
+							Menú de opciones
+						</li>
+							<li>
+									<a class = "selected" onclick="window.location = 'index.html'">Registrar cliente</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'consultarCliente.html'">Consultar cliente</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'index.html'">Consultar cliente por pasatiempo</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'index.html'">Pasatiempos</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'index.html'">Géneros musicales</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'index.html'">Consultar cliente por música</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'index.html'">Comidas favoritas</a>
+							</li>
+							<li>
+									<a onclick="window.location = 'index.html'">Consltar cliente por comida</a>
+							</li>
+					</ul>
+			</div>
+								<br></br>
+			<div class="col-md-8">
+			<div class="panel panel-primary">
+
+      	<div class="panel-heading">
+					<h2>Ingrese los siguientes datos: <span class="label label-default"></span></h2>
+				</div>
+					<br></br>
+		 			<label class = "col-sm-3" style = "margin-left:50px">Nombre:</label>
+		 			<input type="text" placeholder = "Escriba su nombre" name="nombre" class="form-control col-sm-4"; style="width:220px;height:30px; margin-left:50px"/></input>
+
+					<br></br>
+
+					<label class = "col-sm-3"  style = "margin-left:50px">Email:</label>
+					<input type="text" placeholder = "Escriba su email"  name="email" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"/></input>
+
+					<br></br>
+
+					<hr width=85%;/>
+
+					<label class = "col-sm-3" style = "margin-left:50px">Comida favorita:</label>
+					<input type="text" placeholder = "Escriba su comida favorita" name="comida" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"/></input>
+					<button type="button" href = "#" name = "agregarComida" class="btn btn-info" style =  margin-left:190px>Agregar</button>
+
+					<br></br>
+
+					<label class = "col-sm-3" style = "margin-left:50px">Género musical:</label>
+		 			<input type="text" placeholder = "Escriba un género de música" name="musica" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"/></input>
+					<button type="button" href = "#" name = "agregarGenero" class="btn btn-info" style =  margin-left:190px>Agregar</button>
+
+					<br></br>
+
+					<label class = "col-sm-3"style = "margin-left:50px">Pasatiempo:</label>
+		 			<input type="text" placeholder = "Escriba un pasatiempo" name="pasatiempo" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"/></input>
+					<button type="button" href = "#" name = "agregarPasatiempo" class="btn btn-info" style =  margin-left:190px>Agregar</button>
+
+					<br></br>
+					<div class="col-sm-9">
+
+					</div>
+					<button type="button" onClick="alert('Se ha registrado correctamente el cliente'); window.location = 'index.html'" name = "regitrarCliente" class="btn btn-primary col-sm-2" style = margin-left:50px>Registrar cliente</button>
+					<br></br>
+
+			</div>
+		</div>
 </body>
-  </html>
+</html>
