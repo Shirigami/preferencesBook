@@ -10,7 +10,6 @@ app.engine('html', require('ejs').renderFile)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-
 app.use(express.static(__dirname + '/static'))
 
 // Definiendo tablas
@@ -27,6 +26,8 @@ app.get('/', function (req, res) {
 // console.log(req);
 res.render('index.html')
 });
+
+
 /*
 //CONSULTA DE CLIENTES
 app.get("/consultas",function(req,res){
@@ -110,23 +111,59 @@ app.post("/searchFood",function(req,res){
 */
 //
 
+app.get("/buscarCliente", function(req, res){
+		res.render('consultas/consultarCliente.html')
+});
+
+app.get("/buscarClientePasatiempo", function(req, res){
+		res.render('searchHobbies/pasatiempoCliente.html')
+});
+
+app.get("/buscarClienteMusica", function(req, res){
+		res.render('searchMusic/musicaCliente.html')
+});
+
+app.get("/buscarClienteComida", function(req, res){
+		res.render('searchFood/comidaCliente.html')
+});
+app.get("/buscarComida", function(req, res){
+		res.render('searchFood/comidas.html')
+});
+app.get("/buscarMusica", function(req, res){
+		res.render('searchMusic/musica.html')
+});
+app.get("/buscarPasatiempos", function(req, res){
+		res.render('searchHobbies/pasatiempos.html')
+});
+
+
+
+
 //metodo post de insert
 app.post("/",function(req,res){
-	//console.log(req.body);
+	console.log(req.body);
+
+	for(ele in req.body.listaComida){
+		console.log(ele);
+	}
 	var data={
 	name:req.body.nombre,
 	mail:req.body.email,
-	food:req.body.comida,
-	musix:req.body.musica,
-	hobbies:req.body.pasatiempo
+
+	food:req.params.elemento1,
+	musix:req.body.listaGenero,
+	hobbies:req.body.listaPasatiempo
 	}
+
 	var customer=new Customer(data);
 	console.log(customer);
 	customer.save(function(err){
 		console.log(customer);
 		res.render("index.html");
 	});
-})
+});
+
+
 
 
 app.listen(27017);

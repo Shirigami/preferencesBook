@@ -34,29 +34,31 @@
 					<li class="sidebar-brand">
 						Menú de opciones
 					</li>
+
 						<li>
-								<a class = "selected" onclick="window.location = 'index.html'">Registrar cliente</a>
+								<a  href = "/">Registrar cliente</a>
 						</li>
 						<li>
-								<a onclick="window.location = 'consultarCliente.html'">Buscar cliente</a>
+								<a href = "/buscarCliente">Buscar cliente</a>
+
 						</li>
 						<li>
-								<a onclick="window.location = 'pasatiempoCliente.html'">Buscar cliente por pasatiempo</a>
+								<a href = "/buscarClientePasatiempo">Buscar cliente por pasatiempo</a>
 						</li>
 						<li>
-								<a onclick="window.location = 'musicaCliente.html'">Buscar cliente por música</a>
+								<a href = "/buscarClienteMusica" >Buscar cliente por música</a>
 						</li>
 						<li>
-								<a onclick="window.location = 'comidaCliente.html'">Buscar cliente por comida</a>
+								<a  href = "/buscarClienteComida">Buscar cliente por comida</a>
 						</li>
 						<li>
-								<a onclick="window.location = 'comidas.html'">Comidas</a>
+								<a  href = "/buscarComida">Comidas</a>
 						</li>
 						<li>
-								<a onclick="window.location = 'musica.html'">Géneros musicales</a>
+								<a  href = "/buscarMusica">Géneros musicales</a>
 						</li>
 						<li>
-								<a onclick="window.location = 'pasatiempos.html'">Pasatiempos</a>
+								<a  href = "/buscarPasatiempos">Pasatiempos</a>
 						</li>
 				</ul>
 			</div>
@@ -67,8 +69,7 @@
 					<h2>Ingrese los siguientes datos: <span class="label label-default"></span></h2>
 				</div>
 
-					<form method="post">
-
+<form method = "post">
 					<label class = "col-sm-2" style = "margin-left:50px">Nombre:</label>
 		 			<input type="text" placeholder = "Escriba su nombre" name="nombre" class="form-control col-sm-4"; style="width:220px;height:30px; margin-left:50px"
 					oninvalid="setCustomValidity('Este campo es necesario')" oninput="setCustomValidity('')" required /></input>
@@ -92,8 +93,10 @@
 					<p class = "text-primary lead col-sm-4" style = "margin-left:50px">
   				<small>Lista de comidas:</small>
 					</p>
-					<ul class="list-inline col-sm-9" style= "margin-left:50px" id = "listaComida">
 
+
+					<ul class="list-inline col-sm-9" style= "margin-left:50px" name = "listaComida2" id = "listaComida">
+						<li></li>
 
 					</ul>
 
@@ -130,7 +133,7 @@
 					</div>
 
 
-					<button type="submit" onsubmit="return formulario(this)" name = "regitrarCliente" class="btn btn-primary col-sm-2" style = margin-left:50px>Registrar cliente</button>
+					<button type="submit" name = "regitrarCliente" class="btn btn-primary col-sm-2" style = margin-left:50px>Registrar cliente</button>
 
 					</form>
 

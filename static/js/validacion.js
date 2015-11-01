@@ -23,6 +23,7 @@ else {
   var ul = document.getElementById("listaGenero");
   var li = document.createElement("li");
   li.setAttribute("class", "list-group-item list-group-item-info");
+  li.setAttribute("name", "elemento1");
   li.appendChild(document.createTextNode(document.getElementById("idGenero").value));
   ul.appendChild(li);
   document.getElementById("idGenero").value = '';
