@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    link(link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css")
+    script.
+
+      if (foo) {
+         bar(1 + 5)
+      }
+  body
+    h1 Buscar Cliente por gustos musicales
+    form( method="POST" action="/searchMusic" style="margin-top:1.5em;" )
+        div(class = "form-group left-block col-md-4")
+          label(style="width: 150px;") Nombre
+          div(class="form-group text-left")
+          input(type="text" name="music" placeholder="Nombre del género" class="form-control")
+          div(class="form-group left-block col-md-0")
+          input(type="submit" class="btn btn-info" value="Buscar")
+          input(type="submit" class="btn btn-info" value="Ver lista de géneros")
+    table(class="table")
+      caption Clientes
+        tr
+          th Nombre
+          th Correo
+          th Comida
+          th Música
+          th hobbies
+        tbody
+          each customer in customers
+            tr
+              td=customer.name
+              td=customer.mail
+              td=customer.food
+              td=customer.musix
+              td=customer.hobbies

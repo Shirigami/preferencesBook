@@ -1,0 +1,140 @@
+<html lang="es">
+<head>
+	<title>Registro de cliente</title>
+
+<!-- Latest compiled and minified CSS -->
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+<body>
+
+	<script src="js/validacion.js"></script>
+
+	<header>
+		<div class="container">
+			<h1>Preferences Book</h1>
+		</div>
+
+	</header>
+  <div id="wrapper">
+      <!-- Sidebar -->
+			<div id="sidebar-wrapper">
+				<ul class="sidebar-nav">
+					<li class="sidebar-brand">
+						Menú de opciones
+					</li>
+						<li>
+								<a class = "selected" onclick="window.location = 'index.html'">Registrar cliente</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'consultarCliente.html'">Buscar cliente</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'pasatiempoCliente.html'">Buscar cliente por pasatiempo</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'musicaCliente.html'">Buscar cliente por música</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'comidaCliente.html'">Buscar cliente por comida</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'comidas.html'">Comidas</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'musica.html'">Géneros musicales</a>
+						</li>
+						<li>
+								<a onclick="window.location = 'pasatiempos.html'">Pasatiempos</a>
+						</li>
+				</ul>
+			</div>
+			<br></br>
+			<div class="col-md-9">
+
+      	<div class="panel-heading">
+					<h2>Ingrese los siguientes datos: <span class="label label-default"></span></h2>
+				</div>
+
+					<form method="post">
+
+					<label class = "col-sm-2" style = "margin-left:50px">Nombre:</label>
+		 			<input type="text" placeholder = "Escriba su nombre" name="nombre" class="form-control col-sm-4"; style="width:220px;height:30px; margin-left:50px"
+					oninvalid="setCustomValidity('Este campo es necesario')" oninput="setCustomValidity('')" required /></input>
+
+					<br></br>
+
+					<label class = "col-sm-2"  style = "margin-left:50px">Email:</label>
+					<input type="text" placeholder = "Escriba su email"  name="email" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"
+					oninvalid="setCustomValidity('Este campo es necesario')" oninput="setCustomValidity('')" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+					required title = "Ejemplo: ejemplo@mail.com"/></input>
+
+					<br></br>
+					<hr width=85%;/>
+
+					<label class = "col-sm-2" style = "margin-left:50px">Comida favorita:</label>
+					<input type="text" placeholder = "Escriba su comida favorita" id="idComida" class="form-control col-sm-1" style="width:220px;height:30px; margin-left:50px"/></input>
+					<button type="button" onclick = "agregarComida()" name = "agregarComidaButton" class="btn btn-info col-sm-1" style =  "margin-left:50px">Agregar</button>
+
+					<br></br>
+
+					<p class = "text-primary lead col-sm-4" style = "margin-left:50px">
+  				<small>Lista de comidas:</small>
+					</p>
+					<ul class="list-inline col-sm-9" style= "margin-left:50px" id = "listaComida">
+
+
+					</ul>
+
+					<br></br>
+
+					<label class = "col-sm-2" style = "margin-left:50px">Género musical:</label>
+		 			<input type="text" placeholder = "Escriba un género de música" id="idGenero" class="form-control col-sm-1" style="width:220px;height:30px; margin-left:50px"/></input>
+					<button type="button" onclick = "agregarGenero()" name = "agregarGeneroButton" class="btn btn-info col-sm-1" style =  "margin-left:50px">Agregar</button>
+
+					<br></br>
+
+					<p class = "text-primary lead col-sm-4" style = "margin-left:50px">
+					<small>Lista de géneros:</small>
+					</p>
+				<ul class="list-inline col-sm-12" style= "margin-left:50px" id = "listaGenero">
+
+					</ul>
+
+			<br></br>
+
+					<label class = "col-sm-2" style = "margin-left:50px">Pasatiempo:</label>
+		 			<input type="text" placeholder = "Escriba un pasatiempo" id="idPasatiempo" class="form-control col-sm-1" style="width:220px;height:30px; margin-left:50px"/></input>
+					<button type="button" onclick = "agregarPasatiempo()" name = "agregarPasatiempoButton" class="btn btn-info col-sm-1" style = "margin-left:50px">Agregar</button>
+										<br></br>
+					<p class = "text-primary lead col-sm-4" style = "margin-left:50px">
+					<small>Lista de pasatiempos:</small>
+					</p>
+					<ul class="list-inline col-sm-9" id = "listaPasatiempo" style= "margin-left:50px">
+
+						</ul>
+
+					<div class="col-sm-8">
+
+					</div>
+
+
+					<button type="submit" onsubmit="return formulario(this)" name = "regitrarCliente" class="btn btn-primary col-sm-2" style = margin-left:50px>Registrar cliente</button>
+
+					</form>
+
+
+		</div>
+</body>
+</html>

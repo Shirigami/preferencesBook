@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    link(link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css") 
+    script.
+      if (foo) {
+         bar(1 + 5)
+      }
+  body
+    div(class="col-md-8 center-block no-float top-space text-left")
+      h1(style="color:skyblue") Dinos tus preferencias!!!!
+      form(method="post" action="/" style="margin-top:1.5em;")
+        div(class="form-group left-block col-md-4")
+          label(style="width: 150px;") Nombre
+          input(type="text" name="name" placeholder="Nombre del cliente" class="form-control")
+        div(class="form-group left-block col-md-4")
+          label(style="width: 150px;") email
+          input(type="text" name="mail" placeholder="Correo electronico" class="form-control")
+        div(class="form-group left-block col-md-4")
+          label(style="width: 150px;") Comida favorita
+          input(type="text" name="food" placeholder="Qué comida prefieres" class="form-control")
+        div(class="form-group left-block col-md-4")
+          label(style="width: 150px;") Música
+          input(type="text" name="musix" placeholder="Tu música favorita" class="form-control")
+        div(class="form-group left-block col-md-4")
+          label(style="width: 150px;") Hobbies
+          input(type="text" name="hobbies" placeholder="Dinos tus pasatiempos" class="form-control")
+        div(class="form-group text-left")
+          input(type="submit" class="btn btn-info" value="Guardar")
+      form(method="GET" action="/consultas" style="margin-top:1.5em;")
+        div(class="form-group text-left")
+          input(type="submit" class="btn btn-info" value="Ver")
+      form(method="POST" action="/searchHobbies" style="margin-top:1.5em;")  
+        div(class="form-group text-left")
+          input(type="submit" name="hobbieS" class="btn btn-info" value="Buscar por Hobbie")
+        div(class="form-group text-left")
+      form(method="POST" action="/searchMusic" style="margin-top:1.5em;")
+          input(type="submit" name="Musica" class="btn btn-info" value="Gustos Musicales")
+      form(method="POST" action="/searchFood" style="margin-top:1.5em;")
+          input(type="submit" name="CFoods" class="btn btn-info" value="Comida preferidas")
+
+
+
+   

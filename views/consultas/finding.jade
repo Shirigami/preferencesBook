@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    link(link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css") 
+    script(type='text/javascript').
+      if (foo) {
+         bar(1 + 5)
+      }
+  body
+    h1(class="pacifico")=customer.name
+    table(class="table")
+      caption Clientes
+      thead
+        tr
+          th Nombre
+          th Correo
+          th Comida
+          th Música
+          th hobbies
+      tbody       
+        tr
+          td=customer.name
+          td=customer.mail
+          td=customer.food
+          td=customer.musix
+          td=customer.hobbies 
