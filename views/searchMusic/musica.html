@@ -68,9 +68,17 @@
 						<br></br>
 						<br></br>
 	<table class="table table-striped">
-
+<tr>
 	<td><strong>Géneros Musicales</strong></td>
-	</table>
+</tr>
+
+						<% for (var i = 0; i<listMusic.length;i++) { %>
+						<tr>
+								<td><%= listMusic[i]  %></td>
+
+						</tr>
+						<% }; %>
+						</table>
 						<br></br>
 
 			</div>

@@ -68,9 +68,18 @@
 						<br></br>
 						<br></br>
 			<table class="table table-striped">
-
+				<tr>
 			<td><strong>Comidas</strong></td>
-			</table>
+		</tr>
+
+								<% for (var i = 0; i<listComidas.length;i++) { %>
+								<tr>
+										<td><%= listComidas[i]  %></td>
+
+								</tr>
+								<% }; %>
+								</table>
+
 						<br></br>
 				</div>
 		</div>

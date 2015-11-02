@@ -67,22 +67,39 @@
 						<h2>Buscar un cliente por comida: <span class="label label-default"></span></h2>
 					</div>
 						<br></br>
+
+						<form method  = "post" action  = "/busquedaComida">
+
 						<label class = "col-sm-4" style = "margin-left:50px">Ingrese el nombre de la comida:</label>
-						<input type="text" placeholder = "Escriba el nombre" name="comida" class="form-control col-sm-4"; style="width:220px;height:30px; margin-left:50px"/></input>
+						<input type="text" placeholder = "Escriba el nombre" name="foods" class="form-control col-sm-4"; style="width:220px;height:30px; margin-left:50px"/></input>
 						<br></br>
 						<div class="col-sm-5">
 
 						</div>
-						<button type="button" onClick="" name = "buscarCliente" class="btn btn-primary col-sm-2" style = margin-left:100px>Buscar cliente</button>
+						<button type="submit" name = "buscarComida" class="btn btn-primary col-sm-2" style = margin-left:100px>Buscar cliente</button>
 											<br></br>
 																<br></br>
 						<table class="table table-striped">
+							<tr>
 							<td><strong>Nombre</strong></td>
 							<td><strong>Email</strong></td>
 							<td><strong>Comidas</strong></td>
 							<td><strong>Géneros Musicales</strong></td>
 							<td><strong>Pasatiempos</strong></td>
+							</tr>
+
+							<% for (var i = 0; i<customers.length;i++) { %>
+							<tr>
+								<td><%= customers[i].name  %></td>
+								<td><%= customers[i].mail %></td>
+								<td><%= customers[i].food %></td>
+								<td><%= customers[i].musix %></td>
+								<td><%= customers[i].hobbies %></td>
+							</tr>
+							<% }; %>
 						</table>
+
+						</form>
 
 					<br></br>
 

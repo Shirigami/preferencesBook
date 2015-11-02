@@ -28,88 +28,190 @@ res.render('index.html')
 });
 
 
-/*
-//CONSULTA DE CLIENTES
-app.get("/consultas",function(req,res){
+//-------------Pagina index - Busqueda de clientes---------------
+
+// Consulta de los clientes get /buscarClientes.. Carga customers a la pag
+app.get("/buscarCliente",function(req,res){
 	Customer.find(function(error,documento){
 		if(error){console.log(error);}
-		//console.log({customer:documento})
+		console.log({customer:documento})
 		//var cus=({customer:documento});
 
-		res.render("consultas/index",{customers:documento})
+		res.render("consultas/consultarCliente.html",{customers:documento})
 	});
 
 });
 
+//Consulta cliente hace post de action /busqueda.. Carga el customer especificado
 app.post("/busqueda",function(req,res){
 	Customer.find({"name":req.body.name}, function(err, cursor){
 		console.log({customer:cursor});
 		if(err){console.log(err);}
-   	 	res.render("busqueda/finding",{customers:cursor})
+   	 	res.render("consultas/consultarCliente.html",{customers:cursor})
    		});
  });
 
+//-------------Pagina searchHobbies - Busqueda pasatiempos---------------
+ //Consulta de pasatiempos get /buscarClientePasatiempo .. Carga los clientes a la pag
+ app.get("/buscarClientePasatiempo",function(req,res){
+ 	Customer.find(function(error,documento){
+ 		if(error){console.log(error);}
+ 		console.log({customer:documento})
+ 		//var cus=({customer:documento});
+
+ 		res.render("searchHobbies/pasatiempoCliente.html",{customers:documento})
+ 	});
+
+ });
 //CONSULTA DE HOBBIES
-app.post("/searchHobbies",function(req,res){
-	Customer.find({"hobbies":req.body.hobbie}, function(err, cursor){
-		console.log(req.body.hobbieS);
-		console.log(req.body.verHobbies);
-		if(err){console.log(err);}
-		if(req.body.verHobbies==undefined & req.body.hobbieS==undefined  ){
-   	 		res.render("searchHobbies/hobbieSearch",{customers:cursor})
-   	 	}else{
-   	 		Customer.find(function(error,documento){
-   	 			console.log(req.body)
-				if(error){console.log(error);}
-   	 				res.render("searchHobbies/listhobbies",{customs:documento})
-   				});
-   	 	}
-   	});
-
-});
-
-//CONSULTA DE MÚSICA
-app.post("/searchMusic",function(req,res){
-	Customer.find({"musix":req.body.music}, function(err, cursor){
-		console.log("Musica  "+req.body.Musica);
-		console.log("verMusics  "+req.body.verMusics);
+app.post("/busquedaPasatiempo",function(req,res){
+	Customer.find({"hobbies":req.body.pasatiempo}, function(err, cursor){
+		//console.log(req.body.hobbieS);
 		//console.log(req.body.verHobbies);
 		if(err){console.log(err);}
-		if(req.body.Musica==undefined & req.body.verMusics!=undefined){
-   	 		res.render("searchMusic/musicSearch",{customers:cursor})
-   	 	}else{
-   	 			Customer.find(function(error,documento){
-   	 		//	console.log(req.body)
-				if(error){console.log(error);}
-   	 				res.render("searchMusic/listMusix",{customu:documento})
-   				});
-   	 	}
+		//if(req.body.verHobbies==undefined & req.body.hobbieS==undefined  ){
+   	 		res.render("searchHobbies/pasatiempoCliente.html",{customers:cursor})
+   	 	//}else{
+   	 		//Customer.find(function(error,documento){
+   	 			//console.log(req.body)
+				//if(error){console.log(error);}
+   	 			//	res.render("searchHobbies/listhobbies",{customs:documento})
+   		//		});
+   	 	//}
    	});
+});
+
+app.get("/buscarPasatiempos",function(req,res){
+ Customer.find(function(error,documento){
+	 if(error){console.log(error);}
+	 var listHobbies = [];
+
+	 for (var i = 0; i < documento.length;i++){
+		 for (var x = 0; x < documento[i].hobbies.length; x++) {
+			 if (listHobbies.indexOf(documento[i].hobbies[x]) == -1){
+
+				listHobbies.push(documento[i].hobbies[x]);
+			}
+		 }
+
+	 }
+		console.log(listHobbies);
+	 res.render("searchHobbies/pasatiempos.html",{listHobbies:listHobbies})
+ });
 
 });
 
-//CONSULTA DE COMIDA aca quede
-app.post("/searchFood",function(req,res){
+
+//-------------Pagina searchFood - Busqueda de comidas---------------
+
+//Consulta de comidas get /buscarClienteMusica .. Carga los clientes a la pag
+app.get("/buscarClienteComida",function(req,res){
+ Customer.find(function(error,documento){
+	 if(error){console.log(error);}
+	 console.log({customer:documento})
+	 //var cus=({customer:documento});
+
+	 res.render("searchFood/comidaCliente.html",{customers:documento})
+ });
+
+});
+
+//CONSULTA DE COMIDA
+app.post("/busquedaComida",function(req,res){
 	Customer.find({"food":req.body.foods}, function(err, cursor){
-		console.log("CFoods  "+req.body.Food);
-		console.log("Food  "+req.body.CFoods);
+		//console.log("CFoods  "+req.body.Food);
+		//console.log("Food  "+req.body.CFoods);
 		//console.log(req.body.verHobbies);
 		if(err){console.log(err);}
-		if(req.body.CFoods==undefined & req.body.Food!=undefined){
-   	 		res.render("searchFood/searchFood",{customers:cursor})
-   	 	}else{
-   	 			Customer.find(function(error,documento){
+		//if(req.body.CFoods==undefined & req.body.Food!=undefined){
+   	 		res.render("searchFood/comidaCliente.html",{customers:cursor})
+   	 	//}else{
+   	 		//	Customer.find(function(error,documento){
    	 		//	console.log(req.body)
-				if(error){console.log(error);}
-   	 				res.render("searchFood/listFood",{customu:documento})
-   				});
-   	 	}
+				//if(error){console.log(error);}
+   	 			//	res.render("searchFood/listFood",{customu:documento})
+   				//});
+   	 	//}
    	});
 
 });
 
-*/
-//
+app.get("/buscarComida",function(req,res){
+ Customer.find(function(error,documento){
+	 if(error){console.log(error);}
+	 var listComidas = [];
+
+	 for (var i = 0; i < documento.length;i++){
+		 for (var x = 0; x < documento[i].food.length; x++) {
+			 if (listComidas.indexOf(documento[i].food[x]) == -1){
+
+				listComidas.push(documento[i].food[x]);
+			}
+		 }
+
+	 }
+		//console.log(listComidas);
+	 res.render("searchFood/comidas.html",{listComidas:listComidas})
+ });
+
+});
+
+
+
+//-------------Pagina searchMusic - Busqueda de musica---------------
+
+// Consulta de los clientes get /buscarClienteMusica. Carga customers a la pag
+app.get("/buscarClienteMusica",function(req,res){
+	Customer.find(function(error,documento){
+		if(error){console.log(error);}
+		console.log({customer:documento})
+		//var cus=({customer:documento});
+
+		res.render("searchMusic/musicaCliente.html",{customers:documento})
+	});
+
+});
+//CONSULTA DE MÚSICA
+app.post("/busquedaMusica",function(req,res){
+	Customer.find({"musix":req.body.genero}, function(err, cursor){
+		//console.log("Musica  "+req.body.Musica);
+		//console.log("verMusics  "+req.body.verMusics);
+		//console.log(req.body.verHobbies);
+		if(err){console.log(err);}
+		//if(req.body.Musica==undefined & req.body.verMusics!=undefined){
+   	 		res.render("searchMusic/musicaCliente.html",{customers:cursor})
+   	 	//}else{
+   	 		//	Customer.find(function(error,documento){
+   	 		//	console.log(req.body)
+				//if(error){console.log(error);}
+   	 			//	res.render("searchMusic/listMusix",{customu:documento})
+   				//});
+   	 	//}
+   	});
+});
+
+app.get("/buscarMusica",function(req,res){
+ Customer.find(function(error,documento){
+	 if(error){console.log(error);}
+	 var listMusic = [];
+
+	 for (var i = 0; i < documento.length;i++){
+		 for (var x = 0; x < documento[i].musix.length; x++) {
+			 if (listMusic.indexOf(documento[i].musix[x]) == -1){
+
+				listMusic.push(documento[i].musix[x]);
+			}
+		 }
+
+	 }
+		//console.log(listComidas);
+	 res.render("searchMusic/musica.html",{listMusic:listMusic})
+ });
+
+});
++
+
+//-------------Menu gets para el sidebar -----------------------
 
 app.get("/buscarCliente", function(req, res){
 		res.render('consultas/consultarCliente.html')
@@ -138,6 +240,7 @@ app.get("/buscarPasatiempos", function(req, res){
 
 
 
+//-------------Pagina index - Insercion---------------
 
 //metodo post de insert
 app.post("/",function(req,res){

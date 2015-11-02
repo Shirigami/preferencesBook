@@ -1,4 +1,3 @@
-
 function agregarComida()
 {
   if (document.getElementById("idComida").value == ''){
