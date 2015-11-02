@@ -3,11 +3,13 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var app = express()
+
 // uso de paquetes de las herramientes
 mongoose.connect('mongodb://localhost:27017/EventsPromoting')
 app.set('view engine', 'html')
 app.engine('html', require('ejs').renderFile)
 
+// Paths utilizados para la ejecucion del programa
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/static'))
@@ -59,25 +61,15 @@ app.post("/busqueda",function(req,res){
  		console.log({customer:documento})
  		//var cus=({customer:documento});
 
- 		res.render("searchHobbies/pasatiempoCliente.html",{customers:documento})
+ 		res.render("searchHobbies/pasatiempoCliente.html",{customers:documento,pasatiempo1:":"})
  	});
 
  });
 //CONSULTA DE HOBBIES
 app.post("/busquedaPasatiempo",function(req,res){
 	Customer.find({"hobbies":req.body.pasatiempo}, function(err, cursor){
-		//console.log(req.body.hobbieS);
-		//console.log(req.body.verHobbies);
 		if(err){console.log(err);}
-		//if(req.body.verHobbies==undefined & req.body.hobbieS==undefined  ){
-   	 		res.render("searchHobbies/pasatiempoCliente.html",{customers:cursor})
-   	 	//}else{
-   	 		//Customer.find(function(error,documento){
-   	 			//console.log(req.body)
-				//if(error){console.log(error);}
-   	 			//	res.render("searchHobbies/listhobbies",{customs:documento})
-   		//		});
-   	 	//}
+   	 		res.render("searchHobbies/pasatiempoCliente.html",{customers:cursor,pasatiempo1:req.body.pasatiempo + ":"})
    	});
 });
 
@@ -89,18 +81,15 @@ app.get("/buscarPasatiempos",function(req,res){
 	 for (var i = 0; i < documento.length;i++){
 		 for (var x = 0; x < documento[i].hobbies.length; x++) {
 			 if (listHobbies.indexOf(documento[i].hobbies[x]) == -1){
-
 				listHobbies.push(documento[i].hobbies[x]);
 			}
 		 }
 
 	 }
-		console.log(listHobbies);
 	 res.render("searchHobbies/pasatiempos.html",{listHobbies:listHobbies})
  });
 
 });
-
 
 //-------------Pagina searchFood - Busqueda de comidas---------------
 
@@ -109,9 +98,8 @@ app.get("/buscarClienteComida",function(req,res){
  Customer.find(function(error,documento){
 	 if(error){console.log(error);}
 	 console.log({customer:documento})
-	 //var cus=({customer:documento});
 
-	 res.render("searchFood/comidaCliente.html",{customers:documento})
+	 res.render("searchFood/comidaCliente.html",{customers:documento,comida1:":"})
  });
 
 });
@@ -119,19 +107,9 @@ app.get("/buscarClienteComida",function(req,res){
 //CONSULTA DE COMIDA
 app.post("/busquedaComida",function(req,res){
 	Customer.find({"food":req.body.foods}, function(err, cursor){
-		//console.log("CFoods  "+req.body.Food);
-		//console.log("Food  "+req.body.CFoods);
-		//console.log(req.body.verHobbies);
+
 		if(err){console.log(err);}
-		//if(req.body.CFoods==undefined & req.body.Food!=undefined){
-   	 		res.render("searchFood/comidaCliente.html",{customers:cursor})
-   	 	//}else{
-   	 		//	Customer.find(function(error,documento){
-   	 		//	console.log(req.body)
-				//if(error){console.log(error);}
-   	 			//	res.render("searchFood/listFood",{customu:documento})
-   				//});
-   	 	//}
+   	 		res.render("searchFood/comidaCliente.html",{customers:cursor,comida1: req.body.foods +":"})
    	});
 
 });
@@ -150,13 +128,10 @@ app.get("/buscarComida",function(req,res){
 		 }
 
 	 }
-		//console.log(listComidas);
 	 res.render("searchFood/comidas.html",{listComidas:listComidas})
  });
 
 });
-
-
 
 //-------------Pagina searchMusic - Busqueda de musica---------------
 
@@ -165,28 +140,19 @@ app.get("/buscarClienteMusica",function(req,res){
 	Customer.find(function(error,documento){
 		if(error){console.log(error);}
 		console.log({customer:documento})
-		//var cus=({customer:documento});
 
-		res.render("searchMusic/musicaCliente.html",{customers:documento})
+		res.render("searchMusic/musicaCliente.html",{customers:documento,genero1:":"})
 	});
 
 });
+
 //CONSULTA DE MÚSICA
 app.post("/busquedaMusica",function(req,res){
 	Customer.find({"musix":req.body.genero}, function(err, cursor){
-		//console.log("Musica  "+req.body.Musica);
-		//console.log("verMusics  "+req.body.verMusics);
-		//console.log(req.body.verHobbies);
+
 		if(err){console.log(err);}
-		//if(req.body.Musica==undefined & req.body.verMusics!=undefined){
-   	 		res.render("searchMusic/musicaCliente.html",{customers:cursor})
-   	 	//}else{
-   	 		//	Customer.find(function(error,documento){
-   	 		//	console.log(req.body)
-				//if(error){console.log(error);}
-   	 			//	res.render("searchMusic/listMusix",{customu:documento})
-   				//});
-   	 	//}
+   	 		res.render("searchMusic/musicaCliente.html",{customers:cursor,genero1:req.body.genero + ":"})
+
    	});
 });
 
@@ -204,12 +170,10 @@ app.get("/buscarMusica",function(req,res){
 		 }
 
 	 }
-		//console.log(listComidas);
 	 res.render("searchMusic/musica.html",{listMusic:listMusic})
  });
 
 });
-+
 
 //-------------Menu gets para el sidebar -----------------------
 
@@ -238,8 +202,6 @@ app.get("/buscarPasatiempos", function(req, res){
 		res.render('searchHobbies/pasatiempos.html')
 });
 
-
-
 //-------------Pagina index - Insercion---------------
 
 //metodo post de insert
@@ -265,8 +227,5 @@ app.post("/",function(req,res){
 		res.render("index.html");
 	});
 });
-
-
-
 
 app.listen(27017);
