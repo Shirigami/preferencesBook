@@ -36,9 +36,6 @@ res.render('index.html')
 app.get("/buscarCliente",function(req,res){
 	Customer.find(function(error,documento){
 		if(error){console.log(error);}
-		console.log({customer:documento})
-		//var cus=({customer:documento});
-
 		res.render("consultas/consultarCliente.html",{customers:documento})
 	});
 
@@ -47,7 +44,7 @@ app.get("/buscarCliente",function(req,res){
 //Consulta cliente hace post de action /busqueda.. Carga el customer especificado
 app.post("/busqueda",function(req,res){
 	Customer.find({"name":req.body.name}, function(err, cursor){
-		console.log({customer:cursor});
+
 		if(err){console.log(err);}
    	 	res.render("consultas/consultarCliente.html",{customers:cursor})
    		});
@@ -58,8 +55,6 @@ app.post("/busqueda",function(req,res){
  app.get("/buscarClientePasatiempo",function(req,res){
  	Customer.find(function(error,documento){
  		if(error){console.log(error);}
- 		console.log({customer:documento})
- 		//var cus=({customer:documento});
 
  		res.render("searchHobbies/pasatiempoCliente.html",{customers:documento,pasatiempo1:":"})
  	});
@@ -97,8 +92,6 @@ app.get("/buscarPasatiempos",function(req,res){
 app.get("/buscarClienteComida",function(req,res){
  Customer.find(function(error,documento){
 	 if(error){console.log(error);}
-	 console.log({customer:documento})
-
 	 res.render("searchFood/comidaCliente.html",{customers:documento,comida1:":"})
  });
 
@@ -139,8 +132,6 @@ app.get("/buscarComida",function(req,res){
 app.get("/buscarClienteMusica",function(req,res){
 	Customer.find(function(error,documento){
 		if(error){console.log(error);}
-		console.log({customer:documento})
-
 		res.render("searchMusic/musicaCliente.html",{customers:documento,genero1:":"})
 	});
 
@@ -206,11 +197,7 @@ app.get("/buscarPasatiempos", function(req, res){
 
 //metodo post de insert
 app.post("/",function(req,res){
-	console.log(req.body);
 
-	for(ele in req.body.listaComida){
-		console.log(ele);
-	}
 	var data={
 	name:req.body.nombre,
 	mail:req.body.email,
@@ -221,9 +208,7 @@ app.post("/",function(req,res){
 	}
 
 	var customer=new Customer(data);
-	console.log(customer);
 	customer.save(function(err){
-		console.log(customer);
 		res.render("index.html");
 	});
 });
