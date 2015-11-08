@@ -4,8 +4,19 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var app = express()
 
+
 // uso de paquetes de las herramientes
-mongoose.connect('mongodb://localhost:27017/EventsPromoting')
+mongoose.connect('mongodb://localhost:27017/EventsPromoting');
+
+
+//var uri = "mongodb://192.168.0.14:30002,192.168.0.10:30001/EventsPromoting";
+
+//mongoose.connect(uri);
+
+
+
+
+
 app.set('view engine', 'html')
 app.engine('html', require('ejs').renderFile)
 
@@ -213,4 +224,4 @@ app.post("/",function(req,res){
 	});
 });
 
-app.listen(27017);
+app.listen(11111);
