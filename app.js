@@ -2,12 +2,13 @@
 var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+//var flash2 = require('flash')
 var app = express()
 
 
 // uso de paquetes de las herramientes
+//mongoose.connect('mongodb://localhost:27017/EventsPromoting');
 mongoose.connect('mongodb://localhost:27017/EventsPromoting');
-
 
 //var uri = "mongodb://192.168.0.14:30002,192.168.0.10:30001/EventsPromoting";
 
@@ -24,7 +25,8 @@ app.engine('html', require('ejs').renderFile)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/static'))
-
+//app.use(session())
+//app.use(flash2())
 // Definiendo tablas
 var customerSchema = {
 	name: String,
@@ -38,7 +40,9 @@ var Customer = mongoose.model('Customer', customerSchema)
 app.get('/', function (req, res) {
 	Customer.find(function(error,documento){
 		if(error){console.log(error);}
-		res.render("index.html")
+		res.render("index.html",{
+			correos:""
+		})
 });
 });
 
@@ -48,7 +52,9 @@ app.get('/index', function (req, res) {
 		if(error){console.log(error);}
 		//console.log(documento);
 
-		res.render("index.html")
+		res.render("index.html",{
+			correos:""
+		})
 
 });
 });
@@ -67,11 +73,21 @@ app.get("/buscarCliente",function(req,res){
 
 //Consulta cliente hace post de action /busqueda.. Carga el customer especificado
 app.post("/busqueda",function(req,res){
-	Customer.find({"name":req.body.name}, function(err, cursor){
+	if (req.body.name=="") {
+		Customer.find({"mail":req.body.correo}, function(err, cursor){
 
-		if(err){console.log(err);}
-   	 	res.render("consultas/consultarCliente.html",{customers:cursor})
-   		});
+			if(err){console.log(err);}
+	   	 	res.render("consultas/consultarCliente.html",{customers:cursor})
+	   		});
+	}
+	else {
+		Customer.find({"name":req.body.name}, function(err, cursor){
+
+			if(err){console.log(err);}
+	   	 	res.render("consultas/consultarCliente.html",{customers:cursor})
+	   		});
+	}
+
  });
 
 //-------------Pagina searchHobbies - Busqueda pasatiempos---------------
@@ -231,26 +247,35 @@ app.post("/registrar",function(req,res){
 	}
 	console.log(emails);
 	if (emails.indexOf(req.body.email) != -1){
-				res.send('<script>"El email ya existe"</script>');
-		res.render("index.html");
+		/*res.render("index.html",function(err,out){
+				res.send("<script>alert('Ya existe el correo')</script>");
+			})*/
+		console.log('entro');
+		//res.send("<script>alert('Ya existe el correo')</script>");
+		//req.flash('error', 'Could not update your name, please contact our support team');
+		//res.redirect('/');
+		//res.send("index.html","<script>alert('Ya existe el correo')</script>")
 
-
+		res.render('index.html',{
+			correos: "Ya existe el correo"
+		});
 	}
 	else{
+		console.log(req.body.elemento1);
 		var data={
 		name:req.body.nombre,
 		mail:req.body.email,
 
-		food:req.params.elemento1,
-		musix:req.body.listaGenero,
-		hobbies:req.body.listaPasatiempo
+		food:req.body.elemento1,
+		musix:req.body.elemento2,
+		hobbies:req.body.elemento3
 		}
 
 		var customer=new Customer(data);
 		customer.save(function(err){
-		res.render("index.html",function(err,out){
-			alert("Cliente registrado exitosamente");
-		})
+			res.render("index.html",{
+				correos: "Cliente registrado correctamente"
+			})
 		});
 	}
 	});

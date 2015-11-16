@@ -20,6 +20,12 @@
 
 </head>
 <body>
+	<script type="text/javascript">
+	var epsy = <%-JSON.stringify(correos)%>;
+		if(epsy != ""){
+			alert(epsy)
+		}
+	</script>
 
   <div id="wrapper">
       <!-- Sidebar -->
@@ -77,7 +83,7 @@
 					<br></br>
 
 					<label class = "col-sm-2"  style = "margin-left:50px">Email:</label>
-					<input type="text" placeholder = "Escriba su email"  id ="idEmail" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"
+					<input type="text" placeholder = "Escriba su email"  name="email" class="form-control col-sm-4" style="width:220px;height:30px; margin-left:50px"
 					oninvalid="setCustomValidity('Este campo es necesario')" oninput="setCustomValidity('')" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
 					required title = "Ejemplo: ejemplo@mail.com"/></input>
 
@@ -85,7 +91,7 @@
 					<hr width=85%;/>
 
 					<label class = "col-sm-2" style = "margin-left:50px">Comida favorita:</label>
-					<input type="text" placeholder = "Escriba su comida favorita" id="idComida" class="form-control col-sm-1" style="width:220px;height:30px; margin-left:50px"/></input>
+					<input type="text" placeholder = "Escriba su comida favorita" name="comidaName" id="idComida" class="form-control col-sm-1" style="width:220px;height:30px; margin-left:50px"/></input>
 					<button type="button" onclick = "agregarComida()" name = "agregarComidaButton" class="btn btn-info col-sm-1" style =  "margin-left:50px">Agregar</button>
 
 					<br></br>

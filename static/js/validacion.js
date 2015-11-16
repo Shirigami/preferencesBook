@@ -5,8 +5,12 @@ function agregarComida()
   }
   else {
     var ul = document.getElementById("listaComida");
-    var li = document.createElement("li");
+    var li = document.createElement("input");
     li.setAttribute("class", "list-group-item list-group-item-info");
+    li.setAttribute("readonly","");
+    li.setAttribute("name", "elemento1");
+    li.setAttribute("type", "input");
+    li.setAttribute("value", document.getElementById("idComida").value);
     li.appendChild(document.createTextNode(document.getElementById("idComida").value));
     ul.appendChild(li);
     document.getElementById("idComida").value = '';
@@ -20,9 +24,12 @@ if (document.getElementById("idGenero").value == ''){
 }
 else {
   var ul = document.getElementById("listaGenero");
-  var li = document.createElement("li");
+  var li = document.createElement("input");
   li.setAttribute("class", "list-group-item list-group-item-info");
-  li.setAttribute("name", "elemento1");
+  li.setAttribute("readonly","");
+  li.setAttribute("name", "elemento2");
+  li.setAttribute("type", "input");
+  li.setAttribute("value", document.getElementById("idGenero").value);
   li.appendChild(document.createTextNode(document.getElementById("idGenero").value));
   ul.appendChild(li);
   document.getElementById("idGenero").value = '';
@@ -36,8 +43,12 @@ function agregarPasatiempo()
   }
   else {
     var ul = document.getElementById("listaPasatiempo");
-    var li = document.createElement("li");
+    var li = document.createElement("input");
     li.setAttribute("class", "list-group-item list-group-item-info");
+    li.setAttribute("readonly","");
+    li.setAttribute("name", "elemento3");
+    li.setAttribute("type", "input");
+    li.setAttribute("value", document.getElementById("idPasatiempo").value);
     li.appendChild(document.createTextNode(document.getElementById("idPasatiempo").value));
     ul.appendChild(li);
     document.getElementById("idPasatiempo").value = '';
