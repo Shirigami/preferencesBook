@@ -34,10 +34,23 @@ var customerSchema = {
 	hobbies: []
 }
 var Customer = mongoose.model('Customer', customerSchema)
-// init página
+
 app.get('/', function (req, res) {
-// console.log(req);
-res.render('index.html')
+	Customer.find(function(error,documento){
+		if(error){console.log(error);}
+		res.render("index.html")
+});
+});
+
+// init página
+app.get('/index', function (req, res) {
+	Customer.find(function(error,documento){
+		if(error){console.log(error);}
+		//console.log(documento);
+
+		res.render("index.html")
+
+});
 });
 
 
@@ -207,21 +220,41 @@ app.get("/buscarPasatiempos", function(req, res){
 //-------------Pagina index - Insercion---------------
 
 //metodo post de insert
-app.post("/",function(req,res){
+app.post("/registrar",function(req,res){
 
-	var data={
-	name:req.body.nombre,
-	mail:req.body.email,
+	Customer.find(function(error,documento){
+	if(error){console.log(error);}
 
-	food:req.params.elemento1,
-	musix:req.body.listaGenero,
-	hobbies:req.body.listaPasatiempo
+	var emails = [];
+	for (var i = 0; i < documento.length; i++){
+		emails.push(documento[i].mail);
 	}
-
-	var customer=new Customer(data);
-	customer.save(function(err){
+	console.log(emails);
+	if (emails.indexOf(req.body.email) != -1){
+				res.send('<script>"El email ya existe"</script>');
 		res.render("index.html");
+
+
+	}
+	else{
+		var data={
+		name:req.body.nombre,
+		mail:req.body.email,
+
+		food:req.params.elemento1,
+		musix:req.body.listaGenero,
+		hobbies:req.body.listaPasatiempo
+		}
+
+		var customer=new Customer(data);
+		customer.save(function(err){
+		res.render("index.html",function(err,out){
+			alert("Cliente registrado exitosamente");
+		})
+		});
+	}
 	});
 });
+
 
 app.listen(11111);

@@ -43,3 +43,19 @@ function agregarPasatiempo()
     document.getElementById("idPasatiempo").value = '';
   }
 }
+
+function validarEmail(list){
+  alert(list);
+  /*var emails = [];
+  for(var i = 0; list.length; i++){
+    email.push(list[i].mail);
+  }
+  if(email.indexOf(document.getElementById("idEmail")) != -1){
+    //alert("El correo electrónico ya existe");
+    return false;
+  }
+  else {
+    return true;
+  }
+*/
+}
