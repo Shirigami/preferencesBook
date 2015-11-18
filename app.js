@@ -8,7 +8,7 @@ var app = express()
 
 // uso de paquetes de las herramientes
 //mongoose.connect('mongodb://localhost:27017/EventsPromoting');
-mongoose.connect('mongodb://localhost:27017/EventsPromoting');
+mongoose.connect('mongodb://localhost:30001/EventsPromoting');
 
 //var uri = "mongodb://192.168.0.14:30002,192.168.0.10:30001/EventsPromoting";
 
